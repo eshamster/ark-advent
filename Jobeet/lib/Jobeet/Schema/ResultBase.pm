@@ -38,9 +38,14 @@ sub inflate_json_column {
 
     for my $column (@columns) {
         $pkg->inflate_column(
-            $column,
+            $column, # カラム名
             {
+                # カラムデータ -> オブジェクト
+                # Note:
+                # $p && from_json($p) は以下と同じ(はず)
+                # if ($p) { from_json($p); } else { undef; }
                 inflate => sub { my $p = shift; $p && from_json($p); },
+                # オブジェクト -> カラムデータ
                 deflate => sub { my $p = shift; $p && to_json($p); },
             }
             );
