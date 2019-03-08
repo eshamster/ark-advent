@@ -1,7 +1,7 @@
 package Jobeet;
 use Ark;
 
-use_model 'Jobeet::Models';
+use_model 'Jobeet::Models'; # ← 作成時点で書いてあった :-)
 our $VERSION = '0.01';
 
 __PACKAGE__->meta->make_immutable;
