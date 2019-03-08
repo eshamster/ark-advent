@@ -24,6 +24,6 @@ autoloader qr/^Schema::/ => sub { # qr: 正規表現を定義
     for my $t ($schema->sources) {
         $self->register( "Schema::$t" => sub { $schema->resultset($t) });
     }
-}
+};
 
 1;
