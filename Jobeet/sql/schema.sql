@@ -21,7 +21,7 @@ CREATE UNIQUE INDEX jobeet_category_name ON jobeet_category (name);
 CREATE TABLE jobeet_job (
   id INTEGER PRIMARY KEY NOT NULL,
   category_id INTEGER NOT NULL,
-  type VARCHAR(255) NOT NULL,
+  type VARCHAR(255),
   position VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   how_to_apply TEXT NOT NULL,
@@ -29,6 +29,9 @@ CREATE TABLE jobeet_job (
   is_public TINYINT NOT NULL DEFAULT 1,
   is_activated TINYINT NOT NULL DEFAULT 0,
   email VARCHAR(255) NOT NULL,
+  company VARCHAR(255),
+  logo VARCHAR(255),
+  url VARCHAR(255),
   expired_at DATETIME NOT NULL,
   created_at DATETIME NOT NULL,
   updated_at DATETIME NOT NULL,

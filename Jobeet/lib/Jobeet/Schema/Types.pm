@@ -47,7 +47,7 @@ sub NULLABLE_VARCHAR {
     +{
         data_type => 'VARCHAR',
         size => 255,
-        is_nullable => 0,
+        is_nullable => 1,
         @_,
     };
 }
