@@ -1,4 +1,4 @@
-package Jobeet::Schema::Result::Types;
+package Jobeet::Schema::Types;
 use v5.16.3;
 use strict;
 use warnings;

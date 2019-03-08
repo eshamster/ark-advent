@@ -18,7 +18,7 @@ __PACKAGE__->add_columns(
     created_at => DATETIME,
 );
 
-__PACKAGE__->set_primary_key(['id']);
+__PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint(['email']);
 
 __PACKAGE__->has_many(

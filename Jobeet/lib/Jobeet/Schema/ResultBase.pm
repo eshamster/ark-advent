@@ -1,4 +1,4 @@
-package Jobeet::Schema::Result::Job;
+package Jobeet::Schema::ResultBase;
 use v5.16.3;
 use strict;
 use warnings;

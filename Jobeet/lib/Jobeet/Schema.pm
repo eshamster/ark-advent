@@ -2,7 +2,7 @@ package Jobeet::Schema;
 use v5.16.3;
 use strict;
 use warnings;
-use parent 'DBIx::Class:Schema';
+use parent 'DBIx::Class::Schema';
 use DateTime;
 
 # ResultクラスとResultSetクラスのコードをロードする
