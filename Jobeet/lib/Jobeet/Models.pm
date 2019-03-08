@@ -16,11 +16,14 @@ register Schema => sub {
     Jobeet::Schema->connect(@$conf);
 };
 
-for my $table (qw/Job Category CategoryAffiliate Affiliate/) {
-    register "Schema::$table" => sub {
-        my $self = shift;
-        $self->get('Schema')->resultset($table);
-    };
+# Schema/Result 以下のモジュールを自動的に登録する
+autoloader qr/^Schema::/ => sub { # qr: 正規表現を定義
+    my ($self, $name) = @_;
+
+    my $schema = $self->get('Schema');
+    for my $t ($schema->sources) {
+        $self->register( "Schema::$t" => sub { $schema->resultset($t) });
+    }
 }
 
 1;
