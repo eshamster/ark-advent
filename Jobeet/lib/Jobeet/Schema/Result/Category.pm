@@ -25,4 +25,6 @@ __PACKAGE__->has_many(
         cascade_delete => 0,
     });
 
+__PACKAGE__->many_to_many( affiliates => category_affiliate => 'affiliate' );
+
 1;
