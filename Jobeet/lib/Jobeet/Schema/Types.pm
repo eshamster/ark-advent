@@ -8,7 +8,7 @@ our @EXPORT = qw/PK_INTEGER INTEGER NULLABLE_VARCHAR VARCHAR TEXT TINYINT DATETI
 sub PK_INTEGER {
     # +{}: (コードブロックでなく) 無名ハッシュであることを明示する構文
     +{
-        date_type => 'INTEGER',
+        data_type => 'INTEGER',
         is_nullable => 0,
         is_auto_increment => 1,
         # extra: https://metacpan.org/pod/DBIx::Class::ResultSource#extra
