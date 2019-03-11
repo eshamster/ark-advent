@@ -1,0 +1,20 @@
+package Jobeet::Schema::ResultSet::Job;
+use strict;
+use warnings;
+use utf8;
+use parent 'DBIx::Class::ResultSet';
+
+use Jobeet::Models;
+
+sub get_active_jobs {
+    my $self = shift;
+
+    # search の第一引数は検索条件 (WHERE)
+    $self = $self->search({ expires_at => { '>=', models('Schema')->now->strftime("%F %T") }, });
+    # search の第二引数は検索の属性 (LIMIT, ORDER BY, ...)
+    $self = $self->search({}, { order_by => { -desc => 'expires_at' } });
+
+    $self;
+}
+
+1;
