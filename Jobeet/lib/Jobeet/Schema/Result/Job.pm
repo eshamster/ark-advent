@@ -12,6 +12,7 @@ __PACKAGE__->add_columns(
     category_id => INTEGER,
     type => NULLABLE_VARCHAR,
     position => VARCHAR,
+    location => VARCHAR,
     description => TEXT,
     how_to_apply => TEXT,
     token => VARCHAR,

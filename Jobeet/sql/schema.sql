@@ -28,6 +28,7 @@ CREATE TABLE jobeet_job (
   category_id INTEGER NOT NULL,
   type VARCHAR(255),
   position VARCHAR(255) NOT NULL,
+  location VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   how_to_apply TEXT NOT NULL,
   token VARCHAR(255) NOT NULL,
