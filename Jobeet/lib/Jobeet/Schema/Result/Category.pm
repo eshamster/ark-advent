@@ -3,7 +3,10 @@ use v5.16.3;
 use strict;
 use warnings;
 use parent 'Jobeet::Schema::ResultBase';
+
 use String::CamelCase qw(decamelize);
+use Data::Page::Navigation;
+
 use Jobeet::Schema::Types;
 
 use Jobeet::Models;
@@ -45,6 +48,7 @@ sub get_active_jobs {
         {
             order_by => { -desc => 'created_at' },
             defined $attr->{rows} ? (rows => $attr->{rows}) : (),
+            defined $attr->{page} ? (page => $attr->{page}) : (),
         }
     );
 }

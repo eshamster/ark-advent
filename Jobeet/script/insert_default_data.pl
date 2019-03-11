@@ -57,7 +57,7 @@ $job->update({
 });
 
 # 大量追加
-for my $i (100 .. 130) {
+for my $i (100 .. 160) {
     my $job = $job_rs->create({
         category_id  => $programming_category->id,
         company      => "Company $i",
