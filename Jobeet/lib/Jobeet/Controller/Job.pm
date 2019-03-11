@@ -33,7 +33,7 @@ sub index :Path :Args(0) {
     # stashはコントローラとビューの間で変数を共有するために利用する
     $c->stash->{jobs} = models('Schema::Job')->search
         ({
-            created_at => { '>=', models('Schema')->now->add( days => -30) }
+            expires_at => { '>=', models('Schema')->now },
          });
 }
 
