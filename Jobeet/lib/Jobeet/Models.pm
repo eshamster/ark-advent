@@ -1,11 +1,18 @@
 package Jobeet::Models;
 use strict;
 use warnings;
+# Note: モデルクラスであることの宣言
 use Ark::Models '-base';
 
-# 今のところは、registerという関数でモデルを登録するということだけ理解しておく。
-# 細部は別の章で見る。
+# Note:
+# registerで登録したモデルクラスの取得
+# 1. use Jobeet::Models;
+# 2. 登録名を指定して取得する(↓いずれか)
+#    - my $obj = models('Schema::Job');
+#    - my $obj = models->get('Schema::Job');
+#    - my $obj = Jobeet::Schema->get('Schema::Job');
 
+# Note: registerで登録したモデルクラスのは必要になった時点でロードされる
 register Schema => sub {
     my $self = shift;
 
