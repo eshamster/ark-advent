@@ -15,7 +15,11 @@
       <div class="feed">
         <a href="">Feed</a>
       </div>
-      <h1><?= $category->name?></h1>
+      <h1>
+        <a href="<?= $c->uri_for('/category', $category->slug) ?>">
+          <?= $category->name?>
+        </a>
+      </h1>
     </div>
 
     <table class="jobs">
@@ -33,6 +37,16 @@
       </tr>
 ? } # end for $job
     </table>
+
+    <!-- $max_rows件以上の場合はカテゴリページへのリンクを表示 -->
+? my $count = $category->get_active_jobs->count;
+? my $rest = $count - $max_rows;
+? if ($rest > 0) {
+    <div class="more_job">
+      and <a href="<?= $c->uri_for('/category', $category->slug)?>"><?= $rest ?></a>
+      more..
+    </div>
+? } # end if
   </div>
 ? } # end for $category
 </div>

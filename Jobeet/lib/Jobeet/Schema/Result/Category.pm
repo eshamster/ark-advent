@@ -38,15 +38,13 @@ sub get_active_jobs {
     my $self = shift;
     my $attr = shift || {};
 
-    $attr->{rows} ||= 10;
-
     # search の第一引数は検索条件 (WHERE)
     # search の第二引数は検索の属性 (LIMIT, ORDER BY, ...)
     $self->jobs(
         { expires_at => { '>=', models('Schema')->now } },
         {
             order_by => { -desc => 'created_at' },
-            rows => $attr->{rows},
+            defined $attr->{rows} ? (rows => $attr->{rows}) : (),
         }
     );
 }
