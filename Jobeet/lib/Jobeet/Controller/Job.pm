@@ -31,7 +31,7 @@ sub index :Path :Args(0) {
 
     # Note:
     # stashはコントローラとビューの間で変数を共有するために利用する
-    $c->stash->{jobs} = models('Schema::Job')->get_active_jobs;
+    $c->stash->{categories} = models('Schema::Category')->get_with_jobs;
 }
 
 # /job/{job_token} (詳細)

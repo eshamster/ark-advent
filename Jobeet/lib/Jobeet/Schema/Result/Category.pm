@@ -5,6 +5,8 @@ use warnings;
 use parent 'Jobeet::Schema::ResultBase';
 use Jobeet::Schema::Types;
 
+use Jobeet::Models;
+
 __PACKAGE__->table('jobeet_category');
 
 __PACKAGE__->add_columns(
@@ -26,5 +28,18 @@ __PACKAGE__->has_many(
     });
 
 __PACKAGE__->many_to_many( affiliates => category_affiliate => 'affiliate' );
+
+# --- utils --- #
+
+sub get_active_jobs {
+    my $self = shift;
+
+    # search の第一引数は検索条件 (WHERE)
+    # search の第二引数は検索の属性 (LIMIT, ORDER BY, ...)
+    $self->jobs(
+        { expires_at => { '>=', models('Schema')->now } },
+        { order_by => { -desc => 'created_at' } }
+    );
+}
 
 1;
