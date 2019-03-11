@@ -1,10 +1,4 @@
-? extends 'common/base'
-
-<!-- stylesheets ブロックの上書き -->
-? block stylesheets => sub {
-<link rel="stylesheet" type="text/css" href="<?= $c->uri_for('css/main.css') ?>" />
-<link rel="stylesheet" type="text/css" href="<?= $c->uri_for('css/jobs.css') ?>" />
-? }
+? extends 'common/jobs_base'
 
 <!-- content ブロックの上書き -->
 ? block content => sub {
@@ -22,21 +16,8 @@
       </h1>
     </div>
 
-    <table class="jobs">
-? my $i = 0;
 ? my $max_rows = $c->config->{max_jobs_on_homepage};
-? for my $job ($category->get_active_jobs({ rows => $max_rows })) {
-      <tr class="<?= $i++ % 2 == 0 ? 'even' : 'odd'?>">
-        <td class="location"><? $job->location?></td>
-        <td class="position"
-          <a href="<?= $c->uri_for('/job', $job->id)?>">
-            <?= $job->position?>
-          </a>
-        </td>
-        <td class="company"><?= $job->company?></td>
-      </tr>
-? } # end for $job
-    </table>
+?= include('job/_partial_jobs', $category->get_active_jobs({ rows => $max_rows }));
 
     <!-- $max_rows件以上の場合はカテゴリページへのリンクを表示 -->
 ? my $count = $category->get_active_jobs->count;
