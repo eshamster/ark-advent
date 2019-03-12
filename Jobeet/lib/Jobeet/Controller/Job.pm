@@ -1,5 +1,7 @@
 package Jobeet::Controller::Job;
 use Ark 'Controller';
+# Note: フォームを利用するために必要
+with 'Ark::ActionClass::Form';
 
 # Note: carton exec perl script/dev/skeltion.pl controller Job で作成
 
@@ -40,8 +42,11 @@ sub show :Path :Args(1) {
 }
 
 # /job/create (新規作成)
-sub create :Local {
+sub create :Local :Form('Jobeet::Form::Job') {
     my ($self, $c) = @_;
+
+    # Note: フォームクラスのひも付け
+    $c->stash->{form} = $self->form;
 }
 
 
