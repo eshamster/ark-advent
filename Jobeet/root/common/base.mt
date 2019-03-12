@@ -18,6 +18,12 @@
         <div id="sub_header">
           <div class="post">
             <h2>Ask for people</h2>
+            <div>
+              <a href="<?= $c->uri_for('/job/create') ?>">Post a Job</a>
+            </div>
+          </div>
+          <div class="search">
+            <h2>Ask for a job</h2>
             <form action="" method="get">
               <input type="text" name="keywords" id ="search_keywords" />
               <input type="submit" value="search" />
