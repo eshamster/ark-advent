@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Jobeet - Your best job board</title>
+    <title><? block title => sub { 'Jobeet - Your best job board' } ?></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <!-- Note: "? block ... ?"  = テンプレートのブロック -->
     <? block javasripts => '' ?>
