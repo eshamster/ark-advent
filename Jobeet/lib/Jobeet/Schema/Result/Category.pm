@@ -41,10 +41,12 @@ sub get_active_jobs {
     my $self = shift;
     my $attr = shift || {};
 
+     my $dtf = $self->result_source->storage->datetime_parser;
+
     # search の第一引数は検索条件 (WHERE)
     # search の第二引数は検索の属性 (LIMIT, ORDER BY, ...)
     $self->jobs(
-        { expires_at => { '>=', models('Schema')->now }, is_activated => 1 },
+        { expires_at => { '>=', $dtf->format_datetime(models('Schema')->now) }, is_activated => 1 },
         {
             order_by => { -desc => 'created_at' },
             defined $attr->{rows} ? (rows => $attr->{rows}) : (),
