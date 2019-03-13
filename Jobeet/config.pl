@@ -12,4 +12,9 @@ my $home = Jobeet::Models->get('home');
             sqlite_unicode => 1,
         },
     ],
+
+    cache => {
+        share_file => $home->file('tmp', 'cache')->stringify,
+        unlike_on_exit => 0,
+    },
 };

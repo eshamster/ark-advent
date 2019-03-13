@@ -4,6 +4,9 @@ use warnings;
 # Note: モデルクラスであることの宣言
 use Ark::Models '-base';
 
+# Note: セッション情報の保存に利用する
+use Cache::FastMmap;
+
 # Note:
 # registerで登録したモデルクラスの取得
 # 1. use Jobeet::Models;
@@ -31,6 +34,17 @@ autoloader qr/^Schema::/ => sub { # qr: 正規表現を定義
     for my $t ($schema->sources) {
         $self->register( "Schema::$t" => sub { $schema->resultset($t) });
     }
+};
+
+# Note: セッション情報の登録先として Cache::FastMmap を登録する
+register cache => sub {
+    my $self = shift;
+
+    my $conf = $self->get('conf')->{cache}
+      or die 'require chache config';
+
+    $self->ensure_class_loaded('Cache::FastMmap');
+    Cache::FastMmap->new(%$conf);
 };
 
 1;
