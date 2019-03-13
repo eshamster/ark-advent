@@ -5,6 +5,8 @@ use warnings;
 use parent 'Jobeet::Schema::ResultBase';
 use Jobeet::Models;
 use Jobeet::Schema::Types;
+use Digest::SHA1 qw/sha1_hex/;
+use Data::UUID;
 
 __PACKAGE__->table('jobeet_job');
 
@@ -39,7 +41,32 @@ sub insert {
     my $self = shift;
 
     $self->expires_at( models('Schema')->now->add(days => models('conf')->{active_days}) );
+    $self->token( sha1_hex(Data::UUID->new->create) );
     $self->next::method(@_);
+}
+
+# --- action --- #
+
+sub publish {
+    my ($self) = @_;
+    $self->update({ is_activated => 1 });
+}
+
+# --- util --- #
+
+sub is_expired {
+    my ($self) = @_;
+    $self->days_before_expired < 0;
+}
+
+sub days_before_expired {
+    my ($self) = @_;
+    ($self->expires_at - models('Schema')->now)->days;
+}
+
+sub expires_soon {
+    my ($self) = @_;
+    $self->days_before_expired < 5;
 }
 
 1;
