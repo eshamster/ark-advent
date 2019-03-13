@@ -12,3 +12,4 @@ requires 'DateTime::Format::SQLite';
 requires 'FindBin::Libs';
 requires 'String::CamelCase';
 requires 'Data::Page::Navigation';
+requires 'CGI::Simple'
