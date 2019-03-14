@@ -7,7 +7,7 @@
     <link rel="alternate" type="application/atom+xml" title="Latest Jobs"
       href="<?= $c->uri_for('/job/atom') ?>" />
     <!-- Note: "? block ... ?"  = テンプレートのブロック -->
-    <? block javasripts => '' ?>
+    <? block javascripts => '' ?>
     <? block stylesheets => '' ?>
   </head>
   <body>
