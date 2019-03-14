@@ -5,6 +5,7 @@ requires 'DBIx::Class';
 requires 'Data::Page::Navigation';
 requires 'DateTime';
 requires 'DateTime::Format::SQLite';
+requires 'DateTime::Format::W3CDTF';
 requires 'FindBin::Libs';
 requires 'FindBin::libs';
 requires 'GitDDL';
