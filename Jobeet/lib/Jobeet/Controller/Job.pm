@@ -41,7 +41,14 @@ sub show :Path :Args(1) {
     my ($self, $c, $job_token) = @_;
 
     $c->stash->{job} = models('Schema::Job')->find({ token => $job_token })
-        or $c->detach('/default');
+      or $c->detach('/default');
+
+    # 閲覧履歴 (day15で追加された仕様) のためにセッションにページ情報を保存
+    my $history = $c->session->get('job_history') || [];
+
+    unshift @$history, { $c->stash->{job}->get_columns };
+
+    $c->session->set( job_history => $history );
 }
 
 # /job/create (新規作成)

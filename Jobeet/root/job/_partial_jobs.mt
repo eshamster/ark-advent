@@ -6,12 +6,10 @@
 ? for my $job (@jobs) {
   <tr class="<?= $i++ % 2 == 0 ? 'even' : 'odd'?>">
     <td class="location">
-      <? $job->location?>
+      <?= $job->location?>
     </td>
-    <td class="position"
-      <a href="<?= $c->uri_for('/job', $job->id)?>">
-        <?= $job->position?>
-      </a>
+    <td class="position">
+      <?= $job->position?>
     </td>
     <td class="company">
       <?= $job->company?>

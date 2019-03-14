@@ -6,6 +6,27 @@ our $VERSION = '0.01';
 
 __PACKAGE__->meta->make_immutable;
 
+# プラグインの読み込み
+use_plugins
+  qw{
+        Session
+        Session::State::Cookie
+        Session::Store::Model
+};
+
+# プラグインの設定
+config 'Plugin::Session' => {
+    expires => '+30d', # セッション期限
+};
+
+config 'Plugin::Session::State::Cookie' => {
+    cookie_name => 'jobeet_session',
+};
+
+config 'Plugin::Session::Store::Model' => {
+    model => 'cache', # models('cache')
+};
+
 __END__
 
 =head1 NAME
