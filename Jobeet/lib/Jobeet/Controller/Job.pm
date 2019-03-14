@@ -3,6 +3,8 @@ use Ark 'Controller';
 # Note: フォームを利用するために必要
 with 'Ark::ActionClass::Form';
 
+use DateTime::Format::W3CDTF;
+
 # Note: carton exec perl script/dev/skeltion.pl controller Job で作成
 
 use Jobeet::Models;
@@ -66,6 +68,16 @@ sub create :Local :Form('Jobeet::Form::Job') {
     }
 }
 
+sub atom :Local {
+    my ($self, $c) = @_;
+    $c->res->content_type('application/atom+xml; charset=utf-8');
+
+    $c->stash->{w3c_date} = DateTime::Format::W3CDTF->new;
+    $c->stash->{latest_post} = models('Schema::Job')->latest_post;
+
+    # Note: "index" アクションでセットされる stash にアクセスできるようにする
+    $c->forward('index');
+}
 
 # --- 以下 :Chained --- #
 
