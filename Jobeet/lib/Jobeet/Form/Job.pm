@@ -6,7 +6,7 @@ use Jobeet::Models;
 my @a = (1, 2, 3, 4);
 
 param category => (
-    label => 'Category',
+    label => x('Category'),
     type => 'ChoiceField',
     choices => [map { $_->slug => $_->name } models('Schema::Category')->all],
     constraints => [
@@ -89,5 +89,13 @@ param email => (
         'NOT_NULL',
     ],
     );
+
+sub messages {
+    return {
+        not_null => x('please input [_1]'),
+        int      => x('please input [_1] as integer'),
+        ascii    => x('please input [_1] as ascii characters without space'),
+    };
+}
 
 1;
