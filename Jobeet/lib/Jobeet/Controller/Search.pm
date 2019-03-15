@@ -10,6 +10,11 @@ sub index :Path {
       or $c->detach('/default');
 
     $c->stash->{jobs} = models('Schema::Job')->search_fulltext($query);
+
+    # AJAX 経由のリクエストの場合
+    if ($c->req->header('X-Requested-With') =~ /XMLHttpRequest/i) {
+        $c->view('MT')->template('search/ajax');
+    }
 }
 
 1;

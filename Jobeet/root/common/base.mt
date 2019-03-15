@@ -7,7 +7,7 @@
     <link rel="alternate" type="application/atom+xml" title="Latest Jobs"
       href="<?= $c->uri_for('/job/atom') ?>" />
     <!-- Note: "? block ... ?"  = テンプレートのブロック -->
-    <? block javasripts => '' ?>
+    <? block javascripts => '' ?>
     <? block stylesheets => '' ?>
   </head>
   <body>
@@ -30,6 +30,8 @@
             <form action="<?= $c->uri_for('/search') ?>" method="get">
               <input type="text" name="q" id ="search_keywords" />
               <input type="submit" value="search" />
+              <img id="loader" src="<?= $c->uri_for('/images/loader.gif') ?>"
+                   style="vertical-align: middle; display: none" />
               <div class="help">
                 Enter some keywords (city, country, position, ...)
               </div>
