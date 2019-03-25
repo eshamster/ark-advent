@@ -12,6 +12,8 @@ use_plugins
         Session
         Session::State::Cookie
         Session::Store::Model
+
+        I18N
 };
 
 # プラグインの設定
